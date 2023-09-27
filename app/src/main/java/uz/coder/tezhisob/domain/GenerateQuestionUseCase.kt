@@ -1,7 +1,7 @@
 package uz.coder.tezhisob.domain
 
-class GenerateQuessionUseCase(private val repository: GameRepository) {
-    operator fun invoke(maxSumValue:Int):Quession{
+class GenerateQuestionUseCase(private val repository: GameRepository) {
+    operator fun invoke(maxSumValue:Int):Question{
         return repository.genereteQuession(maxSumValue, COUNT_OF_OPTIONS)
     }
     companion object{

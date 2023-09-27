@@ -21,4 +21,10 @@
     <string name="_5">5</string>
     <string name="_6">6</string>
     <string name="tushundim">Tushundim</string>
+    <string name="pragressAnswer">To\'g\'ri javoblar soni: %s (minimum javoblar %s)</string>
+    <string name="to_gri_javoblar_foizda_s_minumum_s">To\'gri javoblar foizda: %s</string>
+    <string name="required_score">Zarur bo\'lgan ball: %s</string>
+    <string name="score_answer">Yig\'ilgan ball: %s</string>
+    <string name="required_percent">Zarur bo\'lgan to\'g\'ri javoblar foizi: %s</string>
+    <string name="yana">Yana</string>
 </resources>

@@ -31,7 +31,7 @@ class StartFragment: Fragment() {
     }
 
     private fun chooseLevelFragment() {
-        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,LevelFragment.newInstance()).commit()
+        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,LevelFragment.newInstance()).addToBackStack(LevelFragment.LEVEL_FRAGMENT).commit()
     }
 
     override fun onDestroyView() {

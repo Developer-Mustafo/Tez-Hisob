@@ -4,5 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:id="@+id/container"
+    android:name="uz.coder.tezhisob.presentation.StartFragment"
     android:layout_height="match_parent"
+    tools:layout="@layout/fragment_start"
     tools:context=".presentation.MainActivity"/>

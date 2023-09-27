@@ -41,13 +41,14 @@ class LevelFragment:Fragment() {
     }
     fun chengeLevel(level: Level){
         requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,GameFragment.newInstanse(
-            level)).commit()
+            level)).addToBackStack(GameFragment.GAME_FRAGMENT).commit()
     }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
     companion object {
+        const val LEVEL_FRAGMENT = "level_fragment"
         fun newInstance(): Fragment {
             return LevelFragment()
         }
