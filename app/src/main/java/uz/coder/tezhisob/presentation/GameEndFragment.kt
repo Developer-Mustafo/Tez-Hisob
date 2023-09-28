@@ -48,8 +48,8 @@ class GameEndFragment: Fragment() {
             }
             minBall.text  =String.format(getString(R.string.required_score,gameResult.gameSetting.minCountOfRightAnswer.toString()))
             score.text  =String.format(getString(R.string.score_answer,gameResult.countOfRightAnswer.toString()))
-            requiredPercent.text  =String.format(getString(R.string.required_percent,gameResult.gameSetting.minPercentOfRightAnswer.toString()))+"%"
-            scorePercent.text  =String.format(getString(R.string.to_gri_javoblar_foizda_s_minumum_s),gameResult.countOfQuession.toString())+"%"
+            requiredPercent.text  =String.format(getString(R.string.required_percent,gameResult.gameSetting.minPercentOfRightAnswer.toString()))
+            scorePercent.text  =String.format(getString(R.string.to_gri_javoblar_foizda_s_minumum_s),((gameResult.countOfRightAnswer /gameResult.countOfQuession.toDouble()) * 100).toInt().toString())
         }
         onBackPressed()
     }

@@ -23,6 +23,7 @@
     android:text="@string/test"
     android:layout_margin="15dp"
     android:textAllCaps="false"
+    android:visibility="gone"
     android:textColor="@color/white"
     android:textSize="25sp"
     android:background="@color/purple_500"

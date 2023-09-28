@@ -1,3 +1,5 @@
+package uz.coder.tezhisob.presentation
+
 import android.app.Application
 import android.os.CountDownTimer
 import androidx.lifecycle.AndroidViewModel
@@ -8,8 +10,8 @@ import uz.coder.tezhisob.data.GameRepositoryImpl
 import uz.coder.tezhisob.domain.*
 
 class GameViewModel(application: Application) : AndroidViewModel(application) {
-    val context = application
-    val repository = GameRepositoryImpl
+    private val context = application
+    private val repository = GameRepositoryImpl
 
     val generateQuestionUseCase = GenerateQuestionUseCase(repository)
     val getGameSettingUseCase = GetGameSettingUseCase(repository)
@@ -61,7 +63,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         startTime()
         _minPercent.value = gameSetting.minPercentOfRightAnswer
         generateQuestion()
-        uptadeProgress()
+        updateProgress()
     }
 
     private fun startTime() {
@@ -89,7 +91,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
-    private fun uptadeProgress() {
+    private fun updateProgress() {
         val percent = calculatePercentOfRightAnswer()
         _percentRightOfAnswer.value = percent
         _progressAnswer.value = String.format(
@@ -114,7 +116,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
             countOfRightAnswer++
         }
         countOfQuestion++
-        uptadeProgress()
+        updateProgress()
         generateQuestion()
     }
 
