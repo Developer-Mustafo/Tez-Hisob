@@ -12,6 +12,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import uz.coder.tezhisob.R
 import uz.coder.tezhisob.databinding.FragmentGameBinding
 import uz.coder.tezhisob.domain.GameResult
@@ -100,7 +101,9 @@ class GameFragment:Fragment() {
     }
 
     private fun gameOver(gameResult: GameResult) {
-        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,GameEndFragment.newInstanse(gameResult)).addToBackStack(null).commit()
+        findNavController().navigate(R.id.action_gameFragment_to_gameEndFragment,Bundle().apply {
+            putSerializable(GameEndFragment.KEY_GAMERESULT,gameResult)
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -115,14 +118,6 @@ class GameFragment:Fragment() {
         _binding = null
     }
     companion object{
-        const val GAME_FRAGMENT: String = "game_fragment"
-        private const val KEY_LEVEL = "key_level"
-        fun newInstanse(level: Level):Fragment{
-            return GameFragment().apply {
-                arguments = Bundle().apply {
-                    putSerializable(KEY_LEVEL,level)
-                }
-            }
-        }
+        const val KEY_LEVEL = "key_level"
     }
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
 import uz.coder.tezhisob.R
 import uz.coder.tezhisob.databinding.FragmentGameEndBinding
 import uz.coder.tezhisob.domain.GameResult
@@ -51,21 +52,10 @@ class GameEndFragment: Fragment() {
             requiredPercent.text  =String.format(getString(R.string.required_percent,gameResult.gameSetting.minPercentOfRightAnswer.toString()))
             scorePercent.text  =String.format(getString(R.string.to_gri_javoblar_foizda_s_minumum_s),((gameResult.countOfRightAnswer /gameResult.countOfQuession.toDouble()) * 100).toInt().toString())
         }
-        onBackPressed()
-    }
-
-    private fun onBackPressed() {
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,object :OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                retry()
-            }
-
-        })
     }
 
     private fun retry() {
-        requireActivity().supportFragmentManager.popBackStack(GameFragment.GAME_FRAGMENT,
-            FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        findNavController().popBackStack()
     }
 
     override fun onDestroyView() {
@@ -74,13 +64,6 @@ class GameEndFragment: Fragment() {
     }
 
     companion object {
-        private const val KEY_GAMERESULT = "game_result"
-        fun newInstanse(gameResult: GameResult): Fragment {
-            return GameEndFragment().apply {
-                arguments = Bundle().apply {
-                    putSerializable(KEY_GAMERESULT,gameResult)
-                }
-            }
-        }
+         const val KEY_GAMERESULT = "game_result"
     }
 }

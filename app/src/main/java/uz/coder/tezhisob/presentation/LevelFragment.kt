@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import uz.coder.tezhisob.R
 import uz.coder.tezhisob.databinding.FragmentLevelBinding
 import uz.coder.tezhisob.domain.Level
@@ -40,17 +41,12 @@ class LevelFragment:Fragment() {
         }
     }
     fun chengeLevel(level: Level){
-        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,GameFragment.newInstanse(
-            level)).addToBackStack(GameFragment.GAME_FRAGMENT).commit()
+        findNavController().navigate(R.id.action_levelFragment_to_gameFragment,Bundle().apply {
+            putSerializable(GameFragment.KEY_LEVEL,level)
+        })
     }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-    companion object {
-        const val LEVEL_FRAGMENT = "level_fragment"
-        fun newInstance(): Fragment {
-            return LevelFragment()
-        }
     }
 }

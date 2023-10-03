@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import uz.coder.tezhisob.R
 import uz.coder.tezhisob.databinding.FragmentStartBinding
 
@@ -31,17 +32,11 @@ class StartFragment: Fragment() {
     }
 
     private fun chooseLevelFragment() {
-        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.container,LevelFragment.newInstance()).addToBackStack(LevelFragment.LEVEL_FRAGMENT).commit()
+        findNavController().navigate(R.id.action_startFragment_to_levelFragment)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        fun newInstance(): Fragment {
-            return StartFragment()
-        }
     }
 }
