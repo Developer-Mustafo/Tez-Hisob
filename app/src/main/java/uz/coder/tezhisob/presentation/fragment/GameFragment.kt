@@ -1,4 +1,4 @@
-package uz.coder.tezhisob.presentation
+package uz.coder.tezhisob.presentation.fragment
 
 import android.content.Context
 import android.content.res.ColorStateList
@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -16,7 +15,6 @@ import androidx.navigation.fragment.findNavController
 import uz.coder.tezhisob.R
 import uz.coder.tezhisob.databinding.FragmentGameBinding
 import uz.coder.tezhisob.di.AppComponent
-import uz.coder.tezhisob.di.DaggerAppComponent
 import uz.coder.tezhisob.domain.GameResult
 import uz.coder.tezhisob.domain.Level
 import uz.coder.tezhisob.presentation.App
