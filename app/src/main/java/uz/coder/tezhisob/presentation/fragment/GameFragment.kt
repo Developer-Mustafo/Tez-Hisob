@@ -1,4 +1,4 @@
-package uz.coder.tezhisob.presentation.fragment
+package uz.coder.tezhisob.presentation
 
 import android.content.Context
 import android.content.res.ColorStateList

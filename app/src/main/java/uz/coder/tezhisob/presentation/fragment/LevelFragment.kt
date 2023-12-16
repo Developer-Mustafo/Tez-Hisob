@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import uz.coder.tezhisob.R
 import uz.coder.tezhisob.databinding.FragmentLevelBinding
-import uz.coder.tezhisob.domain.Level
 
 class LevelFragment:Fragment() {
     private var _binding: FragmentLevelBinding? = null
@@ -27,22 +26,22 @@ class LevelFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding){
             test.setOnClickListener {
-                chengeLevel(Level.TEST)
+                changeLevel(GameFragment.TEST)
             }
             oson.setOnClickListener {
-                chengeLevel(Level.EASY)
+                changeLevel(GameFragment.EASY)
             }
             orta.setOnClickListener {
-                chengeLevel(Level.NORMAL)
+                changeLevel(GameFragment.NORMAL)
             }
             qiyin.setOnClickListener {
-                chengeLevel(Level.HARD)
+                changeLevel(GameFragment.HARD)
             }
         }
     }
-    fun chengeLevel(level: Level){
+    private fun changeLevel(str:String){
         findNavController().navigate(R.id.action_levelFragment_to_gameFragment,Bundle().apply {
-            putSerializable(GameFragment.KEY_LEVEL,level)
+            putString(GameFragment.KEY_TEST,str)
         })
     }
     override fun onDestroyView() {

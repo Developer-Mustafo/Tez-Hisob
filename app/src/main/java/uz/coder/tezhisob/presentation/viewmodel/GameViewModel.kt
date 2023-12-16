@@ -27,6 +27,7 @@ class GameViewModel @Inject constructor(
     private val _percentRightOfAnswer = MutableLiveData<Int>()
     val percentRightOfAnswer: LiveData<Int>
         get() = _percentRightOfAnswer
+
     private val _progressAnswer = MutableLiveData<String>()
     val progressAnswer: LiveData<String>
         get() = _progressAnswer
