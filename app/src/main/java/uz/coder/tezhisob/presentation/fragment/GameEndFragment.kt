@@ -1,5 +1,6 @@
 package uz.coder.tezhisob.presentation.fragment
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +23,11 @@ class GameEndFragment: Fragment() {
     }
 
     private fun foundGameResult() {
-        gameResult = requireArguments().getSerializable(KEY_GAMERESULT) as GameResult
+        gameResult = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requireArguments().getSerializable(KEY_GAMERESULT,GameResult::class.java)?:throw RuntimeException("")
+        }else{
+            requireArguments().getSerializable(KEY_GAMERESULT) as GameResult
+        }
     }
 
     override fun onCreateView(

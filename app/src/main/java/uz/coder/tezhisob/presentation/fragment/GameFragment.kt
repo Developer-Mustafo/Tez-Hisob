@@ -125,7 +125,11 @@ class GameFragment:Fragment() {
         chooseLevel()
     }
     private fun chooseLevel(){
-        level = arguments?.getSerializable(KEY_LEVEL) as Level
+        level = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getSerializable(KEY_LEVEL,Level::class.java)?:throw RuntimeException("")
+        }else{
+            arguments?.getSerializable(KEY_LEVEL) as Level
+        }
     }
     override fun onDestroyView() {
         super.onDestroyView()
