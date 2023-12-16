@@ -1,4 +1,4 @@
-package uz.coder.tezhisob.presentation
+package uz.coder.tezhisob.presentation.viewmodel
 
 import android.app.Application
 import android.os.CountDownTimer
@@ -6,17 +6,15 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import uz.coder.tezhisob.R
-import uz.coder.tezhisob.data.GameRepositoryImpl
 import uz.coder.tezhisob.domain.*
+import javax.inject.Inject
 
-class GameViewModel(application: Application) : AndroidViewModel(application) {
-    private val context = application
-    private val repository = GameRepositoryImpl
+class GameViewModel @Inject constructor(
+    private val application: Application,
+    private val generateQuestionUseCase:GenerateQuestionUseCase,
+    private val getGameSettingUseCase:GetGameSettingUseCase) : AndroidViewModel(application) {
 
-    val generateQuestionUseCase = GenerateQuestionUseCase(repository)
-    val getGameSettingUseCase = GetGameSettingUseCase(repository)
-
-    private lateinit var level: Level
+    private lateinit var level: String
     private lateinit var gameSetting: GameSetting
     private var timer: CountDownTimer? = null
 
@@ -58,8 +56,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     val gameResult: LiveData<GameResult>
         get() = _gameResult
 
-    fun startGame(level: Level) {
-        settingGame(level)
+    fun startGame(string: String) {
+        settingGame(string)
         startTime()
         _minPercent.value = gameSetting.minPercentOfRightAnswer
         generateQuestion()
@@ -95,7 +93,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         val percent = calculatePercentOfRightAnswer()
         _percentRightOfAnswer.value = percent
         _progressAnswer.value = String.format(
-            context.getString(R.string.pragressAnswer),
+            application.getString(R.string.pragressAnswer),
             countOfRightAnswer,
             gameSetting.minCountOfRightAnswer
         )
@@ -141,9 +139,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         return String.format("%02d:%02d", minute, leftTime)
     }
 
-    private fun settingGame(level: Level) {
-        this.level = level
-        gameSetting = getGameSettingUseCase(level)
+    private fun settingGame(string: String) {
+        this.level = string
+        gameSetting = getGameSettingUseCase(string)
     }
 
     companion object {

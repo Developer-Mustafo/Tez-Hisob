@@ -1,4 +1,4 @@
-package uz.coder.tezhisob.presentation
+package uz.coder.tezhisob.presentation.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import uz.coder.tezhisob.databinding.FragmentStartBinding
 class StartFragment: Fragment() {
     private var _binding:FragmentStartBinding? = null
     private val binding:FragmentStartBinding
-        get() = _binding?:throw RuntimeException("binding kelmadi")
+        get() = _binding?:throw RuntimeException("binding init")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

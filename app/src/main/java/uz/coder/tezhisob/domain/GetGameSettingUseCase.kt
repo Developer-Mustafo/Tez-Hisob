@@ -1,7 +1,9 @@
 package uz.coder.tezhisob.domain
 
-class GetGameSettingUseCase(private val repository: GameRepository) {
-    operator fun invoke(level: Level):GameSetting{
-        return repository.getGameSetting(level)
+import javax.inject.Inject
+
+class GetGameSettingUseCase @Inject constructor(private val repository: GameRepository) {
+    operator fun invoke(string: String):GameSetting{
+        return repository.getGameSetting(string)
     }
 }

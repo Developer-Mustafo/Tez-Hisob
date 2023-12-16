@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="uz.coder.tezhisob.presentation.StartFragment"
+        android:name="uz.coder.tezhisob.presentation.fragment.StartFragment"
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/levelFragment"
-        android:name="uz.coder.tezhisob.presentation.LevelFragment"
+        android:name="uz.coder.tezhisob.presentation.fragment.LevelFragment"
         android:label="fragment_level"
         tools:layout="@layout/fragment_level" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
-        android:name="uz.coder.tezhisob.presentation.GameFragment"
+        android:name="uz.coder.tezhisob.presentation.fragment.GameFragment"
         android:label="fragment_game"
         tools:layout="@layout/fragment_game" >
         <action
@@ -33,12 +33,9 @@
             app:destination="@id/gameEndFragment"
             app:popUpTo="@id/gameFragment"
             app:popUpToInclusive="true" />
-        <argument
-            android:name="level"
-            app:argType="uz.coder.tezhisob.domain.Level" />
-    </fragment>
+        </fragment>
     <fragment
         android:id="@+id/gameEndFragment"
-        android:name="uz.coder.tezhisob.presentation.GameEndFragment"
+        android:name="uz.coder.tezhisob.presentation.fragment.GameEndFragment"
         android:label="GameEndFragment" />
 </navigation>

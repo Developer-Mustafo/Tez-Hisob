@@ -1,6 +1,8 @@
 package uz.coder.tezhisob.domain
 
-data class GameSetting(
+import javax.inject.Inject
+
+data class GameSetting @Inject constructor(
     val maxSumValue:Int,
     val minCountOfRightAnswer:Int,
     val minPercentOfRightAnswer:Int,

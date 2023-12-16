@@ -1,12 +1,12 @@
-package uz.coder.tezhisob.presentation
+package uz.coder.tezhisob.presentation.fragment
 
+import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
@@ -15,16 +15,26 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import uz.coder.tezhisob.R
 import uz.coder.tezhisob.databinding.FragmentGameBinding
+import uz.coder.tezhisob.di.AppComponent
 import uz.coder.tezhisob.domain.GameResult
-import uz.coder.tezhisob.domain.Level
+import uz.coder.tezhisob.presentation.App
+import uz.coder.tezhisob.presentation.activity.MainActivity
+import uz.coder.tezhisob.presentation.viewmodel.GameViewModel
+import uz.coder.tezhisob.presentation.viewmodel.ViewModelFactory
+import javax.inject.Inject
 
 class GameFragment:Fragment() {
-    private lateinit var level: Level
+    private lateinit var level: String
     private var _binding:FragmentGameBinding? = null
     private val binding:FragmentGameBinding
-    get() = _binding?:throw RuntimeException("binding kelmadi")
+    get() = _binding?:throw RuntimeException("binding init")
+    @Inject
+    lateinit var viewModelFactory:ViewModelFactory
     private  val viewModel: GameViewModel by lazy {
-        ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory(requireActivity().application))[GameViewModel::class.java]
+        ViewModelProvider(this,viewModelFactory)[GameViewModel::class.java]
+    }
+    private val component by lazy {
+        App().component
     }
     private val listVariant:MutableList<AppCompatButton> by lazy {
         mutableListOf<AppCompatButton>().apply {
@@ -45,9 +55,14 @@ class GameFragment:Fragment() {
         return binding.root
     }
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        chooseLevel()
+    }
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        component.inject(this)
         with(binding){
             viewModel.startGame(level)
             for (i in 0 until  listVariant.size){
@@ -106,18 +121,19 @@ class GameFragment:Fragment() {
         })
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        chooseLevel()
-    }
     private fun chooseLevel(){
-        level = arguments?.getSerializable(KEY_LEVEL) as Level
+        level = arguments?.getString(KEY_TEST)?:""
     }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
     companion object{
-        const val KEY_LEVEL = "key_level"
+        const val KEY_TEST = "test_key"
+        const val TEST = "test"
+        const val EASY = "easy"
+        const val NORMAL = "normal"
+        const val HARD = "hard"
+
     }
 }
