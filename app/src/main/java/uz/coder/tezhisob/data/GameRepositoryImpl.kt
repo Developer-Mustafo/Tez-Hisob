@@ -4,20 +4,19 @@ import uz.coder.tezhisob.domain.GameRepository
 import uz.coder.tezhisob.domain.GameSetting
 import uz.coder.tezhisob.domain.Level
 import uz.coder.tezhisob.domain.Question
-import java.lang.Integer.max
-import java.lang.Integer.min
+import javax.inject.Inject
 import kotlin.random.Random
 
-object GameRepositoryImpl:GameRepository {
-    private const val MIN_SUM_VALUE = 2
-    private const val MIN_SUM_VALUE_ANSWER = 1
+class GameRepositoryImpl @Inject constructor():GameRepository {
+    private val minSumValue = 2
+    private val minSumValueAnswer = 1
     override fun genereteQuession(maxSumValue: Int, countOfOptions: Int): Question {
-        val yigindi = Random.nextInt(MIN_SUM_VALUE, maxSumValue+1) //27
-        val visibleNumber = Random.nextInt(MIN_SUM_VALUE_ANSWER, yigindi) //15
+        val yigindi = Random.nextInt(minSumValue, maxSumValue+1) //27
+        val visibleNumber = Random.nextInt(minSumValueAnswer, yigindi) //15
         val variantlar = HashSet<Int>()
         val rightAnswer = yigindi - visibleNumber
         variantlar.add(rightAnswer)
-        val from = kotlin.math.max(rightAnswer - countOfOptions, MIN_SUM_VALUE)//1
+        val from = kotlin.math.max(rightAnswer - countOfOptions, minSumValue)//1
         val to = kotlin.math.min(maxSumValue - 1, rightAnswer + countOfOptions)
         while (variantlar.size < countOfOptions) {
             variantlar.add(Random.nextInt(from, to))

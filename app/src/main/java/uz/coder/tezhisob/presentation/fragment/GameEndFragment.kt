@@ -1,12 +1,10 @@
-package uz.coder.tezhisob.presentation
+package uz.coder.tezhisob.presentation.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
 import uz.coder.tezhisob.R
 import uz.coder.tezhisob.databinding.FragmentGameEndBinding
@@ -15,7 +13,7 @@ import uz.coder.tezhisob.domain.GameResult
 class GameEndFragment: Fragment() {
     private var _binding: FragmentGameEndBinding? = null
     private val binding: FragmentGameEndBinding
-        get() = _binding?:throw RuntimeException("binding kelmadi")
+        get() = _binding?:throw RuntimeException("binding init")
     private lateinit var gameResult: GameResult
 
     override fun onCreate(savedInstanceState: Bundle?) {

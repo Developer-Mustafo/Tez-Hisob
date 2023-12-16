@@ -1,8 +1,9 @@
 package uz.coder.tezhisob.domain
 
 import java.io.Serializable
+import javax.inject.Inject
 
-data class GameResult(
+data class GameResult @Inject constructor(
     val winner:Boolean,
     val countOfRightAnswer:Int,
     val countOfQuession:Int,

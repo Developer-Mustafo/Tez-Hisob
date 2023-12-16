@@ -1,4 +1,4 @@
-package uz.coder.tezhisob.presentation
+package uz.coder.tezhisob.presentation.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

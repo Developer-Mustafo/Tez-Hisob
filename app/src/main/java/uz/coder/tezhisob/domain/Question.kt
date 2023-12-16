@@ -1,6 +1,8 @@
 package uz.coder.tezhisob.domain
 
-data class Question(
+import javax.inject.Inject
+
+data class Question @Inject constructor(
     val yigindi:Int,
     val visableNumber:Int,
     val options:List<Int>

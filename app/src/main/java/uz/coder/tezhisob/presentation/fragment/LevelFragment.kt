@@ -1,4 +1,4 @@
-package uz.coder.tezhisob.presentation
+package uz.coder.tezhisob.presentation.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,7 +13,7 @@ import uz.coder.tezhisob.domain.Level
 class LevelFragment:Fragment() {
     private var _binding: FragmentLevelBinding? = null
     private val binding: FragmentLevelBinding
-        get() = _binding?:throw RuntimeException("binding kelmadi")
+        get() = _binding?:throw RuntimeException("binding init")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
